@@ -5,18 +5,7 @@ export default function Header() {
   return (
     <header className="bg-gray-180">
       <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between gap-4 animate-fadeUp">
-        {/* Logo cliquable */}
-        <Link href="/" className="flex items-center gap-2 group shrink-0">
-          <Image
-            src="/logo.png"
-            alt="Logo HIOBAT"
-            width={100}
-            height={50}
-            className="object-contain img-anim"
-            priority={false}
-          />
-        </Link>
-
+     
         {/* Navigation */}
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
           <Link href="/" className="link-animated">Accueil</Link>

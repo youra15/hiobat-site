@@ -119,20 +119,34 @@ export default function Home(){
   </ul>
 </section>
 
-      {/* ZONES with unified map */}
-      <section className="section">
-        <div className="grid md:grid-cols-2 gap-8 items-center">
-          <div className="w-full flex justify-center">
-            <Image src="/map-france-unified.png" alt="Carte France avec Île-de-France" width={520} height={520} />
-          </div>
-          <div>
-            <h2 className="heading text-2xl font-semibold">Nos zones d’intervention</h2>
-            <h3 className="text-lg font-semibold mt-1">Où nous retrouver ?</h3>
-            <p className="text-gray-700 mt-3">
-              Nos techniciens interviennent partout en Île-de-France pour réaliser vos chantiers : conseils, devis et suivi sur-mesure.
-            </p>
-            <div className="mt-5">
-              <Link href="/survey" className="btn btn-primary">Lancer mon projet</Link>
+  {/* ZONES with unified map */}
+<section className="section">
+  <div className="grid md:grid-cols-2 gap-8 items-center">
+    <div className="w-full flex justify-center">
+      <Image
+        src="/map-france-unified.png"
+        alt="Carte France avec Île-de-France"
+        width={520}
+        height={520}
+      />
+    </div>
+    <div>
+      <h2 className="heading text-2xl font-semibold">Nos zones d’intervention</h2>
+      <h3 className="text-lg font-semibold mt-1">Où nous retrouver ?</h3>
+      
+      <p className="text-gray-700 mt-3">
+        Basés en Île-de-France, nous mettons notre savoir-faire au service de vos projets partout en France. 
+        De la première idée jusqu’à la dernière finition, nos techniciens vous accompagnent avec des conseils personnalisés, 
+        des devis clairs et un suivi sur-mesure.
+      </p>
+
+      <p className="text-gray-700 mt-3">
+        ✨ Qualité, réactivité et passion du travail bien fait : c’est notre engagement pour transformer vos envies en réalité, 
+        où que vous soyez en France.
+      </p>
+
+      <div className="mt-5">
+        <Link href="/survey" className="btn btn-primary">Lancer mon projet</Link>
             </div>
           </div>
         </div>

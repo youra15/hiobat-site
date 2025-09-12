@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 const initial = { typeBien:'', surface:'', pieces:'', travaux:[], delai:'', codePostal:'', ville:'', prenom:'', nom:'', email:'', phone:'', budget:'', description:'' };
 const steps = ['Votre bien','Votre projet','Localisation','Coordonnées','Récapitulatif'];
 
@@ -6,6 +7,8 @@ export default function Survey(){
   const [data, setData] = useState(initial);
   const [step, setStep] = useState(0);
   const [submitting, setSubmitting] = useState(false);
+  const [sent, setSent] = useState(false); // ✅ état de confirmation
+  const [errorMsg, setErrorMsg] = useState('');
   const total = steps.length;
 
   const next = () => setStep(s => Math.min(s+1, total-1));
@@ -17,14 +20,13 @@ export default function Survey(){
   const submit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
+    setErrorMsg('');
     try {
       const formData = new FormData();
       Object.entries(data).forEach(([k, v]) => {
         formData.append(k, Array.isArray(v) ? v.join(', ') : v);
       });
-      // (facultatif) objet et redirection
       formData.append('_subject', 'Nouvelle demande — Formulaire Rénovation');
-      // formData.append('_redirect', 'http://localhost:3007/merci');
 
       const res = await fetch('https://formspree.io/f/mgvlrdya', {
         method: 'POST',
@@ -33,15 +35,20 @@ export default function Survey(){
       });
 
       if (res.ok) {
-        alert('Merci ! Votre demande a été envoyée.');
-        // window.location.href = '/merci';
+        setSent(true);          // ✅ affiche la confirmation
+        setStep(total - 1);     // va sur le récap (optionnel)
+        setData(initial);       // reset des champs
       } else {
-        alert("Envoi impossible pour le moment. Vérifiez l'ID du formulaire.");
+        const txt = await res.text();
+        setErrorMsg("Envoi impossible pour le moment. Vérifiez l'ID du formulaire ou réessayez.");
+        console.warn('Formspree error:', txt);
       }
     } catch (err) {
-      alert('Erreur réseau. Réessayez.');
+      setErrorMsg('Erreur réseau. Vérifiez votre connexion et réessayez.');
+      console.error(err);
+    } finally {
+      setSubmitting(false);
     }
-    setSubmitting(false);
   };
 
   return (
@@ -55,6 +62,22 @@ export default function Survey(){
           <div className="bg-accent h-2" style={{width: progress + '%'}}></div>
         </div>
       </div>
+
+      {/* ✅ Encadré de confirmation inline (remplace l'alert) */}
+      {sent && (
+        <div className="mb-4 max-w-2xl rounded-xl border border-green-200 bg-green-50 px-4 py-3">
+          <p className="text-green-800">
+            <strong>Merci !</strong> Votre demande a été envoyée. Un membre de l’équipe HIOBAT vous recontactera rapidement.
+          </p>
+        </div>
+      )}
+
+      {/* Message d'erreur propre */}
+      {errorMsg && (
+        <div className="mb-4 max-w-2xl rounded-xl border border-red-200 bg-red-50 px-4 py-3">
+          <p className="text-red-800">{errorMsg}</p>
+        </div>
+      )}
 
       <form onSubmit={submit} className="space-y-6">
         {step===0 && (

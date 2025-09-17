@@ -19,8 +19,8 @@ export default function Footer() {
         <div>
           <h3 className="font-semibold">Réseaux</h3>
           <p>
-            <Link href="https://instagram.com" className="text-blue-600">Instagram</Link><br/>
-            <Link href="https://facebook.com" className="text-blue-600">Facebook</Link>
+            <Link href="https://instagram.com/hiobat.fr" className="text-blue-600">Instagram</Link><br/>
+            <Link href="https://facebook.com/hiobat" className="text-blue-600">Facebook</Link>
           </p>
         </div>
 

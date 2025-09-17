@@ -100,7 +100,7 @@ export default function Contact() {
         <div className="tile p-6">
           <h2 className="font-semibold mb-3">Réseaux sociaux</h2>
           <div className="flex items-center gap-6">
-            <Link href="https://www.instagram.com/hiobat" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:opacity-80">
+            <Link href="https://www.instagram.com/hiobat.fr" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:opacity-80">
               <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
                 <rect x="2" y="2" width="20" height="20" rx="5" stroke="#0F172A" strokeWidth="1.6" />
                 <circle cx="12" cy="12" r="4.2" stroke="#0F172A" strokeWidth="1.6" />
